@@ -7,4 +7,4 @@
 
 [![Python CI](https://github.com/Dddarknight/python-project-lvl3/actions/workflows/pyci.yml/badge.svg)]
 
-[![asciinema_step1](https://asciinema.org/a/14.png)](https://asciinema.org/a/mpgCKj8KaZyE5JJGfkL1MBsEy)
+[![asciinema_step1]](https://asciinema.org/a/mpgCKj8KaZyE5JJGfkL1MBsEy)
