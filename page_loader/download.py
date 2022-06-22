@@ -1,6 +1,7 @@
 import os
-import re
 import requests
+from page_loader.img_download import img_download
+from page_loader.url_to_name import url_to_name
 
 
 def func_request(url):
@@ -9,12 +10,12 @@ def func_request(url):
 
 
 def download(url, output=os.getcwd(), func=func_request):
-    url_without_http = re.findall('[^https://|http://].*', url)
-    file_name = re.sub(r"[\W|_]", '-', url_without_http[0]) + '.html'
+    file_name = url_to_name(url) + '.html'
     r = func(url)
     if not os.path.exists(output):
         os.mkdir(output)
-    new_url = os.path.join(output, file_name)
-    with open(new_url, 'w') as write_file:
+    html_path = os.path.join(output, file_name)
+    with open(html_path, 'w') as write_file:
         write_file.write(r)
-    return new_url
+    img_download(url, output, html_path)
+    return html_path

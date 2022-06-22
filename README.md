@@ -8,3 +8,5 @@
 [![Python CI](https://github.com/Dddarknight/python-project-lvl3/actions/workflows/pyci.yml/badge.svg)]
 
 [![asciinema_step1]](https://asciinema.org/a/mpgCKj8KaZyE5JJGfkL1MBsEy)
+
+[![asciinema_step2]](https://asciinema.org/a/0d2igGbXoD5h0WSXhX0LzkxMb)
