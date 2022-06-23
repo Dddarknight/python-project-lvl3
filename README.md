@@ -5,7 +5,7 @@
 
 <a href="https://codeclimate.com/github/Dddarknight/python-project-lvl3/test_coverage"><img src="https://api.codeclimate.com/v1/badges/7ba6dc8f87fb8431d54f/test_coverage" /></a>
 
-[![Python CI](https://github.com/Dddarknight/python-project-lvl3/actions/workflows/pyci.yml/badge.svg)]
+[![Python CI](https://github.com/Dddarknight/python-project-lvl3/actions/workflows/pyci.yml/badge.svg)](https://github.com/Dddarknight/python-project-lvl3/actions)
 
 [![asciinema_step1](https://asciinema.org/a/mpgCKj8KaZyE5JJGfkL1MBsEy.svg)](https://asciinema.org/a/mpgCKj8KaZyE5JJGfkL1MBsEy)
 
