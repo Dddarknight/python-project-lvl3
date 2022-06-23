@@ -1,6 +1,6 @@
 import os
 import requests
-from page_loader.img_download import img_download
+from page_loader.resources_download import resources_download
 from page_loader.url_to_name import url_to_name
 
 
@@ -17,5 +17,5 @@ def download(url, output=os.getcwd(), func=func_request):
     html_path = os.path.join(output, file_name)
     with open(html_path, 'w') as write_file:
         write_file.write(r)
-    img_download(url, output, html_path)
+    resources_download(url, output, html_path)
     return html_path

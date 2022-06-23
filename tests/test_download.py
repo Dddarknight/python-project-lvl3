@@ -3,7 +3,7 @@ import os
 import requests_mock
 import shutil
 from page_loader.download import download
-from page_loader.img_download import img_download
+from page_loader.resources_download import resources_download
 from page_loader.url_to_name import url_to_name
 
 
@@ -43,7 +43,7 @@ def test_download_img():
     file_name = 'img_download_before.html'
     shutil.copy(get_fixture_path(file_name), dir_path)
     html_path = os.path.join(dir_path, file_name)
-    img_download(url, dir_path, html_path)
+    resources_download(url, dir_path, html_path)
     with open(html_path) as result_file:
         with open(get_fixture_path('img_download_after.html')) as expected_file:
             assert result_file.read() == expected_file.read()
@@ -52,3 +52,25 @@ def test_download_img():
     expected_file_path = os.path.join(expected_dir_path, 'ru-hexlet-io-assets-professions-nodejs.png')
     assert os.path.exists(expected_dir_path)
     assert os.path.exists(expected_file_path)
+
+
+def test_download_res():
+    temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
+    url = 'https://ru.hexlet.io/courses'
+    dir_path = os.path.join(os.getcwd(), temp_dir.name)
+    file_name = 'link_scr_before.html'
+    shutil.copy(get_fixture_path(file_name), dir_path)
+    html_path = os.path.join(dir_path, file_name)
+    resources_download(url, dir_path, html_path)
+    with open(html_path) as result_file:
+        with open(get_fixture_path('link_scr_after.html')) as expected_file:
+            assert result_file.read() == expected_file.read()
+    expected_dir_name = 'ru-hexlet-io-courses_files'
+    expected_dir_path = os.path.join(dir_path, expected_dir_name)
+    expected_file1_path = os.path.join(expected_dir_path, 'ru-hexlet-io-assets-application.css')
+    expected_file2_path = os.path.join(expected_dir_path, 'ru-hexlet-io-assets-professions-nodejs.png')
+    expected_file3_path = os.path.join(expected_dir_path, 'ru-hexlet-io-packs-js-runtime.js')
+    assert os.path.exists(expected_dir_path)
+    assert os.path.exists(expected_file1_path)
+    assert os.path.exists(expected_file2_path)
+    assert os.path.exists(expected_file3_path)
