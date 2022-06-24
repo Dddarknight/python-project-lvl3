@@ -2,10 +2,14 @@ import tempfile
 import os
 import requests_mock
 import shutil
+import logging
+import pytest
 from page_loader.download import download
 from page_loader.resources_download import resources_download
 from page_loader.url_to_name import url_to_name
 
+
+logger = logging.getLogger(__name__)
 
 
 def func_fake(address):
@@ -13,7 +17,9 @@ def func_fake(address):
     return r
 
 
-def test_download_fake_request():
+def test_download_fake_request(caplog):
+    logger.debug('test')
+    caplog.set_level(logging.DEBUG)
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
     file_path = download(url, temp_dir.name, func=func_fake)
@@ -22,7 +28,9 @@ def test_download_fake_request():
         assert actual.strip() == 'output_text'
 
 
-def test_download_mock():
+def test_download_mock(caplog):
+    logger.debug('test')
+    caplog.set_level(logging.DEBUG)
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
     with requests_mock.Mocker() as mock:
@@ -36,7 +44,9 @@ def get_fixture_path(name):
     return os.path.join('tests/fixtures', name)
 
 
-def test_download_img():
+def test_download_img(caplog):
+    logger.debug('test')
+    caplog.set_level(logging.DEBUG)
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
@@ -54,7 +64,9 @@ def test_download_img():
     assert os.path.exists(expected_file_path)
 
 
-def test_download_res():
+def test_download_res(caplog):
+    logger.debug('test')
+    caplog.set_level(logging.DEBUG)
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
