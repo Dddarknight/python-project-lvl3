@@ -4,12 +4,18 @@ import requests_mock
 import shutil
 import logging
 import pytest
+import pook
+import requests
 from page_loader.download import download
 from page_loader.resources_download import resources_download
-from page_loader.url_to_name import url_to_name
 
 
-logger = logging.getLogger(__name__)
+logging.basicConfig(filename='page_loader.log',
+                    level=logging.DEBUG,
+                    filemode='w',
+                    format='%(asctime)s %(message)s',
+                    datefmt='%m/%d/%Y %I:%M:%S %p')
+logger = logging.getLogger()
 
 
 def func_fake(address):
@@ -44,6 +50,7 @@ def get_fixture_path(name):
     return os.path.join('tests/fixtures', name)
 
 
+@pook.on
 def test_download_img(caplog):
     logger.debug('test')
     caplog.set_level(logging.DEBUG)
@@ -53,17 +60,21 @@ def test_download_img(caplog):
     file_name = 'img_download_before.html'
     shutil.copy(get_fixture_path(file_name), dir_path)
     html_path = os.path.join(dir_path, file_name)
+    pook.get('https://ru.hexlet.io/assets/professions/nodejs.png', reply=200)
     resources_download(url, dir_path, html_path)
     with open(html_path) as result_file:
-        with open(get_fixture_path('img_download_after.html')) as expected_file:
+        with open(
+                get_fixture_path('img_download_after.html')) as expected_file:
             assert result_file.read() == expected_file.read()
     expected_dir_name = 'ru-hexlet-io-courses_files'
     expected_dir_path = os.path.join(dir_path, expected_dir_name)
-    expected_file_path = os.path.join(expected_dir_path, 'ru-hexlet-io-assets-professions-nodejs.png')
+    expected_file_path = os.path.join(
+        expected_dir_path, 'ru-hexlet-io-assets-professions-nodejs.png')
     assert os.path.exists(expected_dir_path)
     assert os.path.exists(expected_file_path)
 
 
+@pook.on
 def test_download_res(caplog):
     logger.debug('test')
     caplog.set_level(logging.DEBUG)
@@ -73,16 +84,50 @@ def test_download_res(caplog):
     file_name = 'link_scr_before.html'
     shutil.copy(get_fixture_path(file_name), dir_path)
     html_path = os.path.join(dir_path, file_name)
+    pook.get('https://ru.hexlet.io/assets/professions/nodejs.png', reply=200)
+    pook.get('https://ru.hexlet.io/assets/application.css', reply=200)
+    pook.get('https://ru.hexlet.io/courses', reply=200)
+    pook.get('https://ru.hexlet.io/packs/js/runtime.js', reply=200)
     resources_download(url, dir_path, html_path)
     with open(html_path) as result_file:
         with open(get_fixture_path('link_scr_after.html')) as expected_file:
             assert result_file.read() == expected_file.read()
     expected_dir_name = 'ru-hexlet-io-courses_files'
     expected_dir_path = os.path.join(dir_path, expected_dir_name)
-    expected_file1_path = os.path.join(expected_dir_path, 'ru-hexlet-io-assets-application.css')
-    expected_file2_path = os.path.join(expected_dir_path, 'ru-hexlet-io-assets-professions-nodejs.png')
-    expected_file3_path = os.path.join(expected_dir_path, 'ru-hexlet-io-packs-js-runtime.js')
+    expected_file1_path = os.path.join(
+        expected_dir_path, 'ru-hexlet-io-assets-application.css')
+    expected_file2_path = os.path.join(
+        expected_dir_path, 'ru-hexlet-io-assets-professions-nodejs.png')
+    expected_file3_path = os.path.join(
+        expected_dir_path, 'ru-hexlet-io-packs-js-runtime.js')
     assert os.path.exists(expected_dir_path)
     assert os.path.exists(expected_file1_path)
     assert os.path.exists(expected_file2_path)
     assert os.path.exists(expected_file3_path)
+
+
+@pook.on
+def test_no_dir():
+    temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
+    url = 'https://ru.hexlet.io/courses'
+    fake_dir = 'fake_dir'
+    dir_path = os.path.join(os.getcwd(), temp_dir.name, fake_dir)
+    pook.get(url, reply=200)
+    try:
+        with pytest.raises(FileNotFoundError) as e:
+            download(url, output=dir_path)
+        assert e is not None
+    except SystemExit:
+        pass
+
+
+def test_invalid_url():
+    temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
+    url = 'https://ru.hexlet.ix'
+    dir_path = os.path.join(os.getcwd(), temp_dir.name)
+    try:
+        with pytest.raises(requests.ConnectionError) as e:
+            download(url, output=dir_path)
+        assert e is not None
+    except SystemExit:
+        pass

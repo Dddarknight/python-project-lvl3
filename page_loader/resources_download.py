@@ -1,6 +1,7 @@
 import os
 import re
 import requests
+import logging
 from bs4 import BeautifulSoup
 from page_loader.url_to_name import url_to_name
 from urllib.parse import urlparse
@@ -8,7 +9,10 @@ from urllib.parse import urlparse
 
 def normalize_url(url, url_hostname):
     if urlparse(url).scheme == '' and urlparse(url).netloc == '':
-        url = 'https://' + url_hostname + url
+        if urlparse(url).path[0] != '/':
+            url = 'https://' + url_hostname + '/' + url
+        else:
+            url = 'https://' + url_hostname + url
     elif urlparse(url).scheme == '':
         url = 'https:' + url
     return url
@@ -34,23 +38,30 @@ def check_tail(tail):
 def resource_extract(link, atr, dir_for_resources_path, url_hostname):
     _, dir_for_resources_name = os.path.split(dir_for_resources_path)
     link_internal = link.get(atr)
-    if not link_internal:
-        return link_internal
     normalized_url = normalize_url(link_internal, url_hostname)
-    resource = ''
+    print(normalized_url)
     try:
-        resource = requests.get(normalized_url).content
-    except Exception:
-        pass
-    head, tail = os.path.splitext(normalized_url)
-    tail = check_tail(tail)
-    file_resource_name = url_to_name(head)[:100] + tail
-    path_abs = os.path.join(dir_for_resources_path, file_resource_name)
-    with open(path_abs, 'wb') as write_file:
-        if resource:
+        r = requests.get(normalized_url)
+        if r.status_code != 200:
+            logging.exception(f'Status code {r.status_code} {link_internal}')
+            return ''
+        resource = r.content
+        head, tail = os.path.splitext(normalized_url)
+        tail = check_tail(tail)
+        file_resource_name = url_to_name(head)[:100] + tail
+        path_abs = os.path.join(dir_for_resources_path, file_resource_name)
+        with open(path_abs, 'wb') as write_file:
             write_file.write(resource)
-    path_relative = os.path.join(dir_for_resources_name, file_resource_name)
-    return path_relative
+        path_relative = os.path.join(dir_for_resources_name, file_resource_name)
+        return path_relative
+    except (requests.ConnectionError,
+            requests.HTTPError,
+            requests.URLRequired,
+            requests.TooManyRedirects,
+            requests.exceptions.InvalidSchema,
+            requests.exceptions.MissingSchema,
+            requests.exceptions.InvalidURL):
+        logging.exception(f'Bad request {link_internal}')
 
 
 def in_link(link, atr, url_hostname, dir_path):
