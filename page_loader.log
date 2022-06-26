@@ -1703,3 +1703,189 @@ requests.exceptions.MissingSchema: Invalid URL 'None': No scheme supplied. Perha
 06/26/2022 01:37:07 PM Started
 06/26/2022 01:37:07 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
 06/26/2022 01:37:07 PM https://ru.wikipedia.org:443 "GET /wiki/Java HTTP/1.1" 200 77853
+06/26/2022 02:45:24 PM Started
+06/26/2022 02:45:24 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:45:24 PM https://ru.wikipedia.org:443 "GET /wiki/Java HTTP/1.1" 200 77853
+06/26/2022 02:45:24 PM Please, print the existing directory
+Traceback (most recent call last):
+  File "/Users/uliaegorycheva/python-project-lvl3/page_loader/download.py", line 29, in download
+    with open(html_path, 'w') as write_file:
+FileNotFoundError: [Errno 2] No such file or directory: '/var/tmp/tmp/ru-wikipedia-org-wiki-Java.html'
+06/26/2022 02:45:58 PM Started
+06/26/2022 02:45:58 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:45:59 PM https://ru.wikipedia.org:443 "GET /wiki/Jav HTTP/1.1" 404 None
+06/26/2022 02:45:59 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:45:59 PM https://ru.wikipedia.org:443 "GET /wiki/Special:CentralAutoLogin/start?type=1x1 HTTP/1.1" 302 0
+06/26/2022 02:45:59 PM Starting new HTTPS connection (1): login.wikimedia.org:443
+06/26/2022 02:45:59 PM https://login.wikimedia.org:443 "GET /wiki/Special:CentralAutoLogin/checkLoggedIn?wikiid=ruwiki&proto=https&type=1x1 HTTP/1.1" 200 68
+06/26/2022 02:45:59 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:00 PM https://ru.wikipedia.org:443 "GET /static/images/footer/wikimedia-button.png HTTP/1.1" 200 2360
+06/26/2022 02:46:00 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:00 PM https://ru.wikipedia.org:443 "GET /static/images/footer/poweredby_mediawiki_88x31.png HTTP/1.1" 200 2205
+06/26/2022 02:46:00 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:00 PM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=ext.flaggedRevs.basic%7Cext.uls.interlanguage%7Cext.visualEditor.desktopArticleTarget.noscript%7Cext.wikimediaBadges%7Cskins.vector.styles.legacy&only=styles&skin=vector HTTP/1.1" 200 8549
+06/26/2022 02:46:00 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:00 PM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=site.styles&only=styles&skin=vector HTTP/1.1" 200 5104
+06/26/2022 02:46:00 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:00 PM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=noscript&only=styles&skin=vector HTTP/1.1" 200 38
+06/26/2022 02:46:00 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:01 PM https://ru.wikipedia.org:443 "GET /w/index.php?title=Jav&action=edit HTTP/1.1" 200 None
+06/26/2022 02:46:01 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:02 PM https://ru.wikipedia.org:443 "GET /static/apple-touch/wikipedia.png HTTP/1.1" 200 1313
+06/26/2022 02:46:02 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:02 PM https://ru.wikipedia.org:443 "GET /static/favicon/wikipedia.ico HTTP/1.1" 200 1035
+06/26/2022 02:46:02 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:02 PM https://ru.wikipedia.org:443 "GET /w/opensearch_desc.php HTTP/1.1" 200 456
+06/26/2022 02:46:02 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:02 PM https://ru.wikipedia.org:443 "GET /w/api.php?action=rsd HTTP/1.1" 200 699
+06/26/2022 02:46:02 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:03 PM https://ru.wikipedia.org:443 "GET /wiki/Jav HTTP/1.1" 404 7540
+06/26/2022 02:46:03 PM Status code 404 https://ru.wikipedia.org/wiki/Jav
+NoneType: None
+06/26/2022 02:46:03 PM Bad request None
+Traceback (most recent call last):
+  File "/Users/uliaegorycheva/python-project-lvl3/page_loader/resources_download.py", line 44, in resource_extract
+    r = requests.get(normalized_url)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'None': No scheme supplied. Perhaps you meant http://None?
+06/26/2022 02:46:03 PM Bad request None
+Traceback (most recent call last):
+  File "/Users/uliaegorycheva/python-project-lvl3/page_loader/resources_download.py", line 44, in resource_extract
+    r = requests.get(normalized_url)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'None': No scheme supplied. Perhaps you meant http://None?
+06/26/2022 02:46:03 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:03 PM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=startup&only=scripts&raw=1&skin=vector HTTP/1.1" 200 19434
+06/26/2022 02:46:03 PM Bad request None
+Traceback (most recent call last):
+  File "/Users/uliaegorycheva/python-project-lvl3/page_loader/resources_download.py", line 44, in resource_extract
+    r = requests.get(normalized_url)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'None': No scheme supplied. Perhaps you meant http://None?
+06/26/2022 02:46:03 PM Finished
+06/26/2022 02:46:39 PM Started
+06/26/2022 02:46:39 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:46:39 PM https://ru.wikipedia.org:443 "GET /wiki/Java HTTP/1.1" 200 77853
+06/26/2022 02:46:40 PM Please, print the existing directory
+Traceback (most recent call last):
+  File "/Users/uliaegorycheva/python-project-lvl3/page_loader/download.py", line 29, in download
+    with open(html_path, 'w') as write_file:
+FileNotFoundError: [Errno 2] No such file or directory: '/var/tmp/tmp/ru-wikipedia-org-wiki-Java.html'
+06/26/2022 02:47:04 PM Started
+06/26/2022 02:47:04 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:05 PM https://ru.wikipedia.org:443 "GET /wiki/Ja HTTP/1.1" 404 None
+06/26/2022 02:47:05 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:05 PM https://ru.wikipedia.org:443 "GET /wiki/Special:CentralAutoLogin/start?type=1x1 HTTP/1.1" 302 0
+06/26/2022 02:47:05 PM Starting new HTTPS connection (1): login.wikimedia.org:443
+06/26/2022 02:47:05 PM https://login.wikimedia.org:443 "GET /wiki/Special:CentralAutoLogin/checkLoggedIn?wikiid=ruwiki&proto=https&type=1x1 HTTP/1.1" 200 68
+06/26/2022 02:47:05 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:06 PM https://ru.wikipedia.org:443 "GET /static/images/footer/wikimedia-button.png HTTP/1.1" 200 2360
+06/26/2022 02:47:06 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:06 PM https://ru.wikipedia.org:443 "GET /static/images/footer/poweredby_mediawiki_88x31.png HTTP/1.1" 200 2205
+06/26/2022 02:47:06 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:06 PM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=ext.flaggedRevs.basic%7Cext.uls.interlanguage%7Cext.visualEditor.desktopArticleTarget.noscript%7Cext.wikimediaBadges%7Cskins.vector.styles.legacy&only=styles&skin=vector HTTP/1.1" 200 8549
+06/26/2022 02:47:06 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:06 PM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=site.styles&only=styles&skin=vector HTTP/1.1" 200 5104
+06/26/2022 02:47:06 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:07 PM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=noscript&only=styles&skin=vector HTTP/1.1" 200 38
+06/26/2022 02:47:07 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:07 PM https://ru.wikipedia.org:443 "GET /w/index.php?title=Ja&action=edit HTTP/1.1" 200 None
+06/26/2022 02:47:07 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:08 PM https://ru.wikipedia.org:443 "GET /static/apple-touch/wikipedia.png HTTP/1.1" 200 1313
+06/26/2022 02:47:08 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:08 PM https://ru.wikipedia.org:443 "GET /static/favicon/wikipedia.ico HTTP/1.1" 200 1035
+06/26/2022 02:47:08 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:08 PM https://ru.wikipedia.org:443 "GET /w/opensearch_desc.php HTTP/1.1" 200 456
+06/26/2022 02:47:08 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:08 PM https://ru.wikipedia.org:443 "GET /w/api.php?action=rsd HTTP/1.1" 200 699
+06/26/2022 02:47:08 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:09 PM https://ru.wikipedia.org:443 "GET /wiki/Ja HTTP/1.1" 404 7398
+06/26/2022 02:47:09 PM Status code 404 https://ru.wikipedia.org/wiki/Ja
+NoneType: None
+06/26/2022 02:47:09 PM Bad request None
+Traceback (most recent call last):
+  File "/Users/uliaegorycheva/python-project-lvl3/page_loader/resources_download.py", line 43, in resource_extract
+    r = requests.get(normalized_url)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'None': No scheme supplied. Perhaps you meant http://None?
+06/26/2022 02:47:09 PM Bad request None
+Traceback (most recent call last):
+  File "/Users/uliaegorycheva/python-project-lvl3/page_loader/resources_download.py", line 43, in resource_extract
+    r = requests.get(normalized_url)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'None': No scheme supplied. Perhaps you meant http://None?
+06/26/2022 02:47:09 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/26/2022 02:47:09 PM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=startup&only=scripts&raw=1&skin=vector HTTP/1.1" 200 19434
+06/26/2022 02:47:09 PM Bad request None
+Traceback (most recent call last):
+  File "/Users/uliaegorycheva/python-project-lvl3/page_loader/resources_download.py", line 43, in resource_extract
+    r = requests.get(normalized_url)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/Users/uliaegorycheva/first_venv/lib/python3.10/site-packages/requests/models.py", line 439, in prepare_url
+    raise MissingSchema(
+requests.exceptions.MissingSchema: Invalid URL 'None': No scheme supplied. Perhaps you meant http://None?
+06/26/2022 02:47:09 PM Finished

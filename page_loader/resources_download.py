@@ -39,7 +39,6 @@ def resource_extract(link, atr, dir_for_resources_path, url_hostname):
     _, dir_for_resources_name = os.path.split(dir_for_resources_path)
     link_internal = link.get(atr)
     normalized_url = normalize_url(link_internal, url_hostname)
-    print(normalized_url)
     try:
         r = requests.get(normalized_url)
         if r.status_code != 200:
