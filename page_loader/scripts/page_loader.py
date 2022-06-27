@@ -3,6 +3,7 @@
 from page_loader.download import download
 from page_loader.parsing import parsing
 import logging
+import sys
 
 
 def main():
@@ -10,11 +11,16 @@ def main():
                         level=logging.DEBUG,
                         format='%(asctime)s %(message)s',
                         datefmt='%m/%d/%Y %I:%M:%S %p')
-    logging.info('Started')
+    logger = logging.getLogger()
+    stream_handler = logging.StreamHandler(stream=sys.stdout)
+    stream_handler.setLevel(logging.INFO)
+    logger.addHandler(stream_handler)
+    file_handler = logging.FileHandler(filename='page_loader.log')
+    file_handler.setLevel(logging.DEBUG)
+    logger.addHandler(file_handler)
     args = parsing()
     download(
         args['http_address'], output=args['output'])
-    logging.info('Finished')
 
 
 if __name__ == '__main__':

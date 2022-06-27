@@ -3,8 +3,12 @@ import re
 import requests
 import logging
 from bs4 import BeautifulSoup
+from progress.bar import ChargingBar
 from page_loader.url_to_name import url_to_name
 from urllib.parse import urlparse
+
+
+logger = logging.getLogger()
 
 
 def normalize_url(url, url_hostname):
@@ -42,7 +46,7 @@ def resource_extract(link, atr, dir_for_resources_path, url_hostname):
     try:
         r = requests.get(normalized_url)
         if r.status_code != 200:
-            logging.exception(f'Status code {r.status_code} {link_internal}')
+            logger.info(f'Status code {r.status_code} {link_internal}')
             return ''
         resource = r.content
         head, tail = os.path.splitext(normalized_url)
@@ -60,10 +64,14 @@ def resource_extract(link, atr, dir_for_resources_path, url_hostname):
             requests.exceptions.InvalidSchema,
             requests.exceptions.MissingSchema,
             requests.exceptions.InvalidURL):
-        logging.exception(f'Bad request {link_internal}')
+        logger.debug(f'Bad request {link_internal}')
 
 
-def in_link(link, atr, url_hostname, dir_path):
+def in_link(link, url_hostname, dir_path):
+    if link.name == 'img' or link.name == 'script':
+        atr = 'src'
+    else:
+        atr = 'href'
     hostname = urlparse(link.get(atr)).hostname
     if hostname is None or hostname == url_hostname:
         new_link = resource_extract(link, atr, dir_path, url_hostname)
@@ -76,11 +84,13 @@ def resources_download(url, html_dir_path, html_file_path):
     url_hostname = urlparse(url).hostname
     with open(html_file_path) as read_file:
         soup = BeautifulSoup(read_file, 'html.parser')
-    for link in soup.find_all('img'):
-        in_link(link, 'src', url_hostname, dir_path)
-    for link in soup.find_all('link'):
-        in_link(link, 'href', url_hostname, dir_path)
-    for link in soup.find_all('script'):
-        in_link(link, 'src', url_hostname, dir_path)
+        links = soup.find_all('img')
+        links.extend(soup.find_all('link'))
+        links.extend(soup.find_all('script'))
+    length = len(links)
+    with ChargingBar('Downloading', max=length) as bar:
+        for i in range(0, length):
+            in_link(links[i], url_hostname, dir_path)
+            bar.next()
     with open(html_file_path, 'w') as write_file:
         write_file.write(soup.prettify())

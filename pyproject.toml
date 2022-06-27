@@ -15,6 +15,7 @@ requests = "^2.28.0"
 requests-mock = "^1.9.3"
 beautifulsoup4 = "^4.11.1"
 pook = "^1.0.2"
+progress = "^1.6"
 
 [tool.poetry.dev-dependencies]
 pytest-cov = "^2.11.1"

@@ -202,6 +202,14 @@ jsonschema = ">=2.5.1"
 xmltodict = ">=0.11.0"
 
 [[package]]
+name = "progress"
+version = "1.6"
+description = "Easy to use progress bars"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "py"
 version = "1.11.0"
 description = "library with cross-python path, ini-parsing, io, code, log facilities"
@@ -383,7 +391,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4"
-content-hash = "903bdfa165994da57730b00833fcd18ae3946bc1d3fde5cea6f33b148a914efd"
+content-hash = "281191accdf99dbc68dc7029805dbf311dffcc4c16983a2acc910240343b2012"
 
 [metadata.files]
 atomicwrites = [
@@ -497,6 +505,9 @@ pook = [
     {file = "pook-1.0.2-py2-none-any.whl", hash = "sha256:cd3cbfe280d544e672f41a5b9482883841ba247f865858b57fd59f729e37616a"},
     {file = "pook-1.0.2-py3-none-any.whl", hash = "sha256:2e16d231ec9fe071c14cad7fe41261f65b401f6cb30935a169cf6fc229bd0a1d"},
     {file = "pook-1.0.2.tar.gz", hash = "sha256:f28112db062d17db245b351c80f2bb5bf1e56ebfa93d3d75cc44f500c15c40eb"},
+]
+progress = [
+    {file = "progress-1.6.tar.gz", hash = "sha256:c9c86e98b5c03fa1fe11e3b67c1feda4788b8d0fe7336c2ff7d5644ccfba34cd"},
 ]
 py = [
     {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
