@@ -243,3 +243,15 @@ Starting new HTTPS connection (1): ru.wikipedia.org:443
 https://ru.wikipedia.org:443 "GET /wiki/Pyhbkjjn HTTP/1.1" 404 7415
 06/27/2022 10:59:57 PM Status code 404 https://ru.wikipedia.org/wiki/Pyhbkjjn
 Status code 404 https://ru.wikipedia.org/wiki/Pyhbkjjn
+06/27/2022 11:17:12 PM Starting new HTTPS connection (1): site.com:443
+Starting new HTTPS connection (1): site.com:443
+06/27/2022 11:17:13 PM https://site.com:443 "GET /blog/about HTTP/1.1" 404 None
+https://site.com:443 "GET /blog/about HTTP/1.1" 404 None
+06/27/2022 11:17:13 PM Status code 404 https://site.com/blog/about
+Status code 404 https://site.com/blog/about
+06/27/2022 11:21:14 PM Starting new HTTPS connection (1): site.com:443
+Starting new HTTPS connection (1): site.com:443
+06/27/2022 11:21:15 PM https://site.com:443 "GET /blog/about HTTP/1.1" 404 None
+https://site.com:443 "GET /blog/about HTTP/1.1" 404 None
+06/27/2022 11:21:15 PM Status code 404 https://site.com/blog/about
+Status code 404 https://site.com/blog/about

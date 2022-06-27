@@ -1,7 +1,6 @@
 import os
 import requests
 import logging
-import sys
 from page_loader.resources_download import resources_download
 from page_loader.url_to_name import url_to_name
 
@@ -25,6 +24,9 @@ def download(url, output=os.getcwd(), func=func_request):
     file_name = url_to_name(url) + '.html'
     r = func(url)
     html_path = os.path.join(output, file_name)
+    print(output)
+    print(file_name)
+    print(html_path)
     with open(html_path, 'w') as write_file:
         logger.info(f'requested url: {url}')
         logger.info(f'output path: {output}')
