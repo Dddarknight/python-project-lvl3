@@ -113,7 +113,7 @@ def test_no_dir():
     fake_dir = 'fake_dir'
     dir_path = os.path.join(os.getcwd(), temp_dir.name, fake_dir)
     pook.get(url, reply=200)
-    with pytest.raises(SystemExit) as e:
+    with pytest.raises(FileNotFoundError) as e:
         download(url, output=dir_path)
     assert e is not None
 
@@ -124,6 +124,6 @@ def test_invalid_url():
     url = 'https://ru.hexlet.ix'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
     pook.get(url, reply=404)
-    with pytest.raises(SystemExit) as e:
+    with pytest.raises(requests.ConnectionError) as e:
         download(url, output=dir_path)
     assert e is not None

@@ -237,3 +237,9 @@ https://ru.wikipedia.org:443 "GET /wiki/Pyhbkjjn HTTP/1.1" 404 None
 Status code 404 https://ru.wikipedia.org/wiki/Pyhbkjjn
 06/27/2022 10:52:11 PM Bad request https://ru.wikipedia.org/wiki/Pyhbkjjn
 Bad request https://ru.wikipedia.org/wiki/Pyhbkjjn
+06/27/2022 10:59:57 PM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+06/27/2022 10:59:57 PM https://ru.wikipedia.org:443 "GET /wiki/Pyhbkjjn HTTP/1.1" 404 7415
+https://ru.wikipedia.org:443 "GET /wiki/Pyhbkjjn HTTP/1.1" 404 7415
+06/27/2022 10:59:57 PM Status code 404 https://ru.wikipedia.org/wiki/Pyhbkjjn
+Status code 404 https://ru.wikipedia.org/wiki/Pyhbkjjn

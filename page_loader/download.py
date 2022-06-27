@@ -10,32 +10,18 @@ logger = logging.getLogger()
 
 
 def func_request(url):
-    try:
-        r = requests.get(url)
-        if r.status_code != 200:
-            logger.info(f'Status code {r.status_code} {url}')
-            raise requests.ConnectionError
-        return r.text
-    except (requests.ConnectionError,
-            requests.HTTPError,
-            requests.URLRequired,
-            requests.TooManyRedirects,
-            requests.exceptions.InvalidSchema,
-            requests.exceptions.MissingSchema,
-            requests.exceptions.InvalidURL):
-        logger.debug(f'Bad request {url}')
-        sys.exit()
+    r = requests.get(url)
+    if r.status_code != 200:
+        logger.info(f'Status code {r.status_code} {url}')
+        raise requests.ConnectionError
+    return r.text
 
 
 def download(url, output=os.getcwd(), func=func_request):
     output = os.path.abspath(output)
-    try:
-        if not os.path.exists(output):
-            logger.info('Please, print the appropriate directory')
-            raise FileNotFoundError
-    except (FileNotFoundError, PermissionError) as e:
-        logger.error(e)
-        sys.exit()
+    if not os.path.exists(output):
+        logger.info('Please, print the appropriate directory')
+        raise FileNotFoundError
     file_name = url_to_name(url) + '.html'
     r = func(url)
     html_path = os.path.join(output, file_name)
