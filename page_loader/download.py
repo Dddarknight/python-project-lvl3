@@ -21,7 +21,7 @@ def func_request(url):
             requests.exceptions.MissingSchema,
             requests.exceptions.InvalidURL):
         logger.debug(f'Bad request {url}')
-        sys.exit(1)
+        sys.exit()
 
 
 def download(url, output=os.getcwd(), func=func_request):
@@ -40,4 +40,4 @@ def download(url, output=os.getcwd(), func=func_request):
         return html_path
     except (FileNotFoundError, PermissionError):
         logger.info('Please, print the appropriate directory')
-        sys.exit(1)
+        sys.exit()
