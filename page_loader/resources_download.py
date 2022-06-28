@@ -11,14 +11,28 @@ from urllib.parse import urlparse
 logger = logging.getLogger()
 
 
-def normalize_url(url, url_hostname):
+def extract_protocol(url):
+    if 'https' in url:
+        protocol = 'https://'
+    elif 'http' in url:
+        protocol = 'http://'
+    else:
+        protocol = 'https://'
+    return protocol
+
+
+def normalize_url(url, url_hostname, parent_url=None):
+    if parent_url is not None:
+        protocol = extract_protocol(parent_url)
+    else:
+        protocol = extract_protocol(url)
     if urlparse(url).scheme == '' and urlparse(url).netloc == '':
         if urlparse(url).path[0] != '/':
-            url = 'https://' + url_hostname + '/' + url
+            url = protocol + url_hostname + '/' + url
         else:
-            url = 'https://' + url_hostname + url
+            url = protocol + url_hostname + url
     elif urlparse(url).scheme == '':
-        url = 'https:' + url
+        url = protocol[:-2] + url
     return url
 
 
@@ -39,10 +53,14 @@ def check_tail(tail):
     return tail
 
 
-def resource_extract(link, atr, dir_for_resources_path, url_hostname):
+def resource_extract(link, dir_for_resources_path, url_hostname, url):
+    if link.name == 'img' or link.name == 'script':
+        atr = 'src'
+    else:
+        atr = 'href'
     _, dir_for_resources_name = os.path.split(dir_for_resources_path)
     link_internal = link.get(atr)
-    normalized_url = normalize_url(link_internal, url_hostname)
+    normalized_url = normalize_url(link_internal, url_hostname, url)
     try:
         r = requests.get(normalized_url)
         if r.status_code != 200:
@@ -67,14 +85,14 @@ def resource_extract(link, atr, dir_for_resources_path, url_hostname):
         logger.debug(f'Bad request {link_internal}')
 
 
-def in_link(link, url_hostname, dir_path):
+def in_link(link, url_hostname, dir_path, url):
     if link.name == 'img' or link.name == 'script':
         atr = 'src'
     else:
         atr = 'href'
     hostname = urlparse(link.get(atr)).hostname
     if hostname is None or hostname == url_hostname:
-        new_link = resource_extract(link, atr, dir_path, url_hostname)
+        new_link = resource_extract(link, dir_path, url_hostname, url)
         if new_link:
             link[atr] = new_link
 
@@ -90,7 +108,8 @@ def resources_download(url, html_dir_path, html_file_path):
     length = len(links)
     with ChargingBar('Downloading', max=length) as bar:
         for i in range(0, length):
-            in_link(links[i], url_hostname, dir_path)
+            print('&', links[i])
+            in_link(links[i], url_hostname, dir_path, url)
             bar.next()
     with open(html_file_path, 'w') as write_file:
         write_file.write(soup.prettify())

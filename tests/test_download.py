@@ -107,6 +107,44 @@ def test_download_res(caplog):
 
 
 @pook.on
+def test_download_res2(caplog):
+    logger.debug('test')
+    caplog.set_level(logging.DEBUG)
+    temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
+    url = 'https://site.com/blog/about'
+    dir_path = os.path.join(os.getcwd(), temp_dir.name)
+    file_name = 'site-com-blog-about.html'
+    shutil.copy(get_fixture_path(file_name), dir_path)
+    html_path = os.path.join(dir_path, file_name)
+    pook.get('https://site.com/blog/about', reply=200)
+    pook.get('https://site.com/blog/about/assets/styles.css', reply=200)
+    pook.get('https://site.com/photos/me.jpg', reply=200)
+    pook.get('https://site.com/assets/scripts.js', reply=200)
+    resources_download(url, dir_path, html_path)
+    assert len(os.listdir(dir_path)) == 2
+    assert len(os.listdir(os.path.join(dir_path, 'site-com-blog-about_files'))) == 4
+
+
+@pook.on
+def test_download_res3(caplog):
+    logger.debug('test')
+    caplog.set_level(logging.DEBUG)
+    temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
+    url = 'http://localhost/blog/about'
+    dir_path = os.path.join(os.getcwd(), temp_dir.name)
+    file_name = 'localhost-blog-about.html'
+    shutil.copy(get_fixture_path(file_name), dir_path)
+    html_path = os.path.join(dir_path, file_name)
+    pook.get('http://localhost/blog/about', reply=200)
+    pook.get('http://localhost/blog/about/assets/styles.css', reply=200)
+    pook.get('http://localhost/photos/me.jpg', reply=200)
+    pook.get('http://localhost/assets/scripts.js', reply=200)
+    resources_download(url, dir_path, html_path)
+    assert len(os.listdir(dir_path)) == 2
+    assert len(os.listdir(os.path.join(dir_path, 'localhost-blog-about_files'))) == 4
+
+
+@pook.on
 def test_no_dir():
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
