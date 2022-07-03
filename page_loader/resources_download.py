@@ -108,7 +108,6 @@ def resources_download(url, html_dir_path, html_file_path):
     length = len(links)
     with ChargingBar('Downloading', max=length) as bar:
         for i in range(0, length):
-            print('&', links[i])
             in_link(links[i], url_hostname, dir_path, url)
             bar.next()
     with open(html_file_path, 'w') as write_file:
