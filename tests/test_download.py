@@ -28,7 +28,7 @@ def test_download_fake_request(caplog):
     caplog.set_level(logging.DEBUG)
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
-    file_path = download(url, temp_dir.name, func=func_fake)
+    file_path = download(url, temp_dir.name, get_request_result=func_fake)
     with open(file_path) as read_file:
         actual = read_file.read()
         assert actual.strip() == 'output_text'

@@ -2,13 +2,13 @@ import os
 import requests
 import logging
 from page_loader.resources_download import resources_download
-from page_loader.url_to_name import url_to_name
+from page_loader.url_to_name import convert_url_to_name
 
 
 logger = logging.getLogger()
 
 
-def func_request(url):
+def get_request_result(url):
     r = requests.get(url)
     if r.status_code != 200:
         logger.info(f'Status code {r.status_code} {url}')
@@ -16,13 +16,13 @@ def func_request(url):
     return r.text
 
 
-def download(url, output=os.getcwd(), func=func_request):
+def download(url, output=os.getcwd(), get_request_result=get_request_result):
     output = os.path.abspath(output)
     if not os.path.exists(output):
         logger.info('Please, print the appropriate directory')
         raise FileNotFoundError
-    file_name = url_to_name(url) + '.html'
-    r = func(url)
+    file_name = convert_url_to_name(url) + '.html'
+    r = get_request_result(url)
     html_path = os.path.join(output, file_name)
     with open(html_path, 'w') as write_file:
         logger.info(f'requested url: {url}')

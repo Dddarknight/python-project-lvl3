@@ -4,7 +4,7 @@ import requests
 import logging
 from bs4 import BeautifulSoup
 from progress.bar import ChargingBar
-from page_loader.url_to_name import url_to_name
+from page_loader.url_to_name import convert_url_to_name
 from urllib.parse import urlparse
 
 
@@ -37,7 +37,7 @@ def normalize_url(url, url_hostname, parent_url=None):
 
 
 def create_dir_for_resources(url, dir_path):
-    dir_for_resources_name = url_to_name(url) + '_files'
+    dir_for_resources_name = convert_url_to_name(url) + '_files'
     dir_for_resources_path = os.path.join(dir_path, dir_for_resources_name)
     if not os.path.exists(dir_for_resources_path):
         os.mkdir(dir_for_resources_path)
@@ -49,11 +49,11 @@ def check_tail(tail):
     if check_tail == []:
         tail = '.html'
     if not (check_tail == [] or check_tail == ['.']):
-        tail = url_to_name(tail)
+        tail = convert_url_to_name(tail)
     return tail
 
 
-def resource_extract(link, dir_for_resources_path, url_hostname, url):
+def extract_resource(link, dir_for_resources_path, url_hostname, url):
     if link.name == 'img' or link.name == 'script':
         atr = 'src'
     else:
@@ -69,7 +69,7 @@ def resource_extract(link, dir_for_resources_path, url_hostname, url):
         resource = r.content
         head, tail = os.path.splitext(normalized_url)
         tail = check_tail(tail)
-        file_resource_name = url_to_name(head)[:100] + tail
+        file_resource_name = convert_url_to_name(head)[:100] + tail
         path_abs = os.path.join(dir_for_resources_path, file_resource_name)
         with open(path_abs, 'wb') as write_file:
             write_file.write(resource)
@@ -85,14 +85,14 @@ def resource_extract(link, dir_for_resources_path, url_hostname, url):
         logger.debug(f'Bad request {link_internal}')
 
 
-def in_link(link, url_hostname, dir_path, url):
+def modify_link(link, url_hostname, dir_path, url):
     if link.name == 'img' or link.name == 'script':
         atr = 'src'
     else:
         atr = 'href'
     hostname = urlparse(link.get(atr)).hostname
     if hostname is None or hostname == url_hostname:
-        new_link = resource_extract(link, dir_path, url_hostname, url)
+        new_link = extract_resource(link, dir_path, url_hostname, url)
         if new_link:
             link[atr] = new_link
 
@@ -108,7 +108,7 @@ def resources_download(url, html_dir_path, html_file_path):
     length = len(links)
     with ChargingBar('Downloading', max=length) as bar:
         for i in range(0, length):
-            in_link(links[i], url_hostname, dir_path, url)
+            modify_link(links[i], url_hostname, dir_path, url)
             bar.next()
     with open(html_file_path, 'w') as write_file:
         write_file.write(soup.prettify())

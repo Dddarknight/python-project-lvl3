@@ -1,8 +1,17 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "Downloads html page and resources from the links, which this page contains"
 authors = ["Dddarknight <9801677@gmail.com>"]
+license = "GPL-3.0-only"
+readme = "README.md"
+keywords = ["download", "beautifulsoup"]
+classifiers = [
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Programming Language :: Python :: 3",
+  "Topic :: Internet"
+]
+repository = "https://github.com/Dddarknight/python-project-lvl3"
 packages = [
   { include = "page_loader" },
 ]
