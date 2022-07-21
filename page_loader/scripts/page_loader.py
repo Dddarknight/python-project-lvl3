@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from page_loader.download import download
+from page_loader.html_page import download
 from page_loader.parsing import parsing
 import logging
 import sys

@@ -1,7 +1,7 @@
 import os
 import requests
 import logging
-from page_loader.resources_download import resources_download
+import page_loader.resources as resources
 from page_loader.url_to_name import convert_url_to_name
 
 
@@ -29,6 +29,6 @@ def download(url, output=os.getcwd(), get_request_result=get_request_result):
         logger.info(f'output path: {output}')
         logger.info(f'write html file: {html_path}')
         write_file.write(r)
-    resources_download(url, output, html_path)
+    resources.download(url, output, html_path)
     logger.info(f'Page was downloaded as: {html_path}')
     return html_path

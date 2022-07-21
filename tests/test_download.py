@@ -6,8 +6,8 @@ import logging
 import pytest
 import pook
 import requests
-from page_loader.download import download
-from page_loader.resources_download import resources_download
+from page_loader.html_page import download
+import page_loader.resources as resources
 
 
 logging.basicConfig(filename='page_loader.log',
@@ -61,7 +61,7 @@ def test_download_img(caplog):
     shutil.copy(get_fixture_path(file_name), dir_path)
     html_path = os.path.join(dir_path, file_name)
     pook.get('https://ru.hexlet.io/assets/professions/nodejs.png', reply=200)
-    resources_download(url, dir_path, html_path)
+    resources.download(url, dir_path, html_path)
     with open(html_path) as result_file:
         with open(
                 get_fixture_path('img_download_after.html')) as expected_file:
@@ -88,7 +88,7 @@ def test_download_res(caplog):
     pook.get('https://ru.hexlet.io/assets/application.css', reply=200)
     pook.get('https://ru.hexlet.io/courses', reply=200)
     pook.get('https://ru.hexlet.io/packs/js/runtime.js', reply=200)
-    resources_download(url, dir_path, html_path)
+    resources.download(url, dir_path, html_path)
     with open(html_path) as result_file:
         with open(get_fixture_path('link_scr_after.html')) as expected_file:
             assert result_file.read() == expected_file.read()
@@ -120,7 +120,7 @@ def test_download_res2(caplog):
     pook.get('https://site.com/blog/about/assets/styles.css', reply=200)
     pook.get('https://site.com/photos/me.jpg', reply=200)
     pook.get('https://site.com/assets/scripts.js', reply=200)
-    resources_download(url, dir_path, html_path)
+    resources.download(url, dir_path, html_path)
     assert len(os.listdir(dir_path)) == 2
     assert len(os.listdir(os.path.join(dir_path, 'site-com-blog-about_files'))) == 4
 
@@ -139,7 +139,7 @@ def test_download_res3(caplog):
     pook.get('http://localhost/blog/about/assets/styles.css', reply=200)
     pook.get('http://localhost/photos/me.jpg', reply=200)
     pook.get('http://localhost/assets/scripts.js', reply=200)
-    resources_download(url, dir_path, html_path)
+    resources.download(url, dir_path, html_path)
     assert len(os.listdir(dir_path)) == 2
     assert len(os.listdir(os.path.join(dir_path, 'localhost-blog-about_files'))) == 4
 

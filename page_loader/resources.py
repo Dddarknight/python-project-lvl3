@@ -97,7 +97,7 @@ def modify_link(link, url_hostname, dir_path, url):
             link[atr] = new_link
 
 
-def resources_download(url, html_dir_path, html_file_path):
+def download(url, html_dir_path, html_file_path):
     dir_name, dir_path = create_dir_for_resources(url, html_dir_path)
     url_hostname = urlparse(url).hostname
     with open(html_file_path) as read_file:
