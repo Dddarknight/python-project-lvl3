@@ -20,7 +20,7 @@ def main():
     logger.addHandler(file_handler)
     args = parsing()
     download(
-        args['http_address'], output=args['output'])
+        args.url, output=args.output)
 
 
 if __name__ == '__main__':

@@ -18,7 +18,7 @@ logging.basicConfig(filename='page_loader.log',
 logger = logging.getLogger()
 
 
-def func_fake(address):
+def func_fake(url):
     r = 'output_text'
     return r
 
@@ -122,7 +122,8 @@ def test_download_res2(caplog):
     pook.get('https://site.com/assets/scripts.js', reply=200)
     resources.download(url, dir_path, html_path)
     assert len(os.listdir(dir_path)) == 2
-    assert len(os.listdir(os.path.join(dir_path, 'site-com-blog-about_files'))) == 4
+    assert len(os.listdir(
+        os.path.join(dir_path, 'site-com-blog-about_files'))) == 4
 
 
 @pook.on
@@ -141,7 +142,8 @@ def test_download_res3(caplog):
     pook.get('http://localhost/assets/scripts.js', reply=200)
     resources.download(url, dir_path, html_path)
     assert len(os.listdir(dir_path)) == 2
-    assert len(os.listdir(os.path.join(dir_path, 'localhost-blog-about_files'))) == 4
+    assert len(os.listdir(
+        os.path.join(dir_path, 'localhost-blog-about_files'))) == 4
 
 
 @pook.on

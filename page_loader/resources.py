@@ -41,7 +41,7 @@ def create_dir_for_resources(url, dir_path):
     dir_for_resources_path = os.path.join(dir_path, dir_for_resources_name)
     if not os.path.exists(dir_for_resources_path):
         os.mkdir(dir_for_resources_path)
-    return dir_for_resources_name, dir_for_resources_path
+    return dir_for_resources_path
 
 
 def check_tail(tail):
@@ -73,8 +73,8 @@ def extract_resource(link, dir_for_resources_path, url_hostname, url):
         path_abs = os.path.join(dir_for_resources_path, file_resource_name)
         with open(path_abs, 'wb') as write_file:
             write_file.write(resource)
-        path_relative = os.path.join(dir_for_resources_name, file_resource_name)
-        return path_relative
+        relative_path = os.path.join(dir_for_resources_name, file_resource_name)
+        return relative_path
     except (requests.ConnectionError,
             requests.HTTPError,
             requests.URLRequired,
@@ -98,7 +98,7 @@ def modify_link(link, url_hostname, dir_path, url):
 
 
 def download(url, html_dir_path, html_file_path):
-    dir_name, dir_path = create_dir_for_resources(url, html_dir_path)
+    dir_path = create_dir_for_resources(url, html_dir_path)
     url_hostname = urlparse(url).hostname
     with open(html_file_path) as read_file:
         soup = BeautifulSoup(read_file, 'html.parser')
