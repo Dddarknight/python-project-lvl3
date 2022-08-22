@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from page_loader.html_page import download
-from page_loader.parsing import parsing
+from page_loader.cli import parse
 import logging
 import sys
 
@@ -18,7 +18,7 @@ def main():
     file_handler = logging.FileHandler(filename='page_loader.log')
     file_handler.setLevel(logging.DEBUG)
     logger.addHandler(file_handler)
-    args = parsing()
+    args = parse()
     download(
         args.url, output=args.output)
 

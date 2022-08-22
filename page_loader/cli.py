@@ -1,7 +1,7 @@
 import argparse
 
 
-def parsing():
+def parse():
     parser = argparse.ArgumentParser(
         description='Download page and save to mentioned directory')
     parser.add_argument('url')

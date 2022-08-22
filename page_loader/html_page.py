@@ -21,7 +21,7 @@ def download(url, output=os.getcwd(), get_request_result=get_request_result):
     if not os.path.exists(output):
         logger.info('Please, print the appropriate directory')
         raise FileNotFoundError
-    file_name = convert_url_to_name(url) + '.html'
+    file_name = f"{convert_url_to_name(url)}.html"
     r = get_request_result(url)
     html_path = os.path.join(output, file_name)
     with open(html_path, 'w') as write_file:

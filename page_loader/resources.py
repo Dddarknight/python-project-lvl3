@@ -8,17 +8,18 @@ from page_loader.url_to_name import convert_url_to_name
 from urllib.parse import urlparse
 
 
+MAX_FILE_NAME = 100
+
+
 logger = logging.getLogger()
 
 
 def extract_protocol(url):
     if 'https' in url:
-        protocol = 'https://'
-    elif 'http' in url:
-        protocol = 'http://'
-    else:
-        protocol = 'https://'
-    return protocol
+        return 'https://'
+    if 'http' in url:
+        return 'http://'
+    return 'https://'
 
 
 def normalize_url(url, url_hostname, parent_url=None):
@@ -28,16 +29,15 @@ def normalize_url(url, url_hostname, parent_url=None):
         protocol = extract_protocol(url)
     if urlparse(url).scheme == '' and urlparse(url).netloc == '':
         if urlparse(url).path[0] != '/':
-            url = protocol + url_hostname + '/' + url
-        else:
-            url = protocol + url_hostname + url
-    elif urlparse(url).scheme == '':
-        url = protocol[:-2] + url
+            return f"{protocol}{url_hostname}/{url}"
+        return f"{protocol}{url_hostname}{url}"
+    if urlparse(url).scheme == '':
+        return f"{protocol[:-2]}{url}"
     return url
 
 
 def create_dir_for_resources(url, dir_path):
-    dir_for_resources_name = convert_url_to_name(url) + '_files'
+    dir_for_resources_name = f"{convert_url_to_name(url)}_files"
     dir_for_resources_path = os.path.join(dir_path, dir_for_resources_name)
     if not os.path.exists(dir_for_resources_path):
         os.mkdir(dir_for_resources_path)
@@ -47,29 +47,30 @@ def create_dir_for_resources(url, dir_path):
 def check_tail(tail):
     check_tail = re.findall(r"[|\W|_]", tail)
     if check_tail == []:
-        tail = '.html'
+        return '.html'
     if not (check_tail == [] or check_tail == ['.']):
-        tail = convert_url_to_name(tail)
+        return convert_url_to_name(tail)
     return tail
 
 
 def extract_resource(link, dir_for_resources_path, url_hostname, url):
-    if link.name == 'img' or link.name == 'script':
+    if link.name in ('img', 'script'):
         atr = 'src'
     else:
         atr = 'href'
     _, dir_for_resources_name = os.path.split(dir_for_resources_path)
-    link_internal = link.get(atr)
-    normalized_url = normalize_url(link_internal, url_hostname, url)
+    tag_link = link.get(atr)
+    normalized_url = normalize_url(tag_link, url_hostname, url)
     try:
         r = requests.get(normalized_url)
         if r.status_code != 200:
-            logger.info(f'Status code {r.status_code} {link_internal}')
+            logger.info(f'Status code {r.status_code} {tag_link}')
             return ''
         resource = r.content
         head, tail = os.path.splitext(normalized_url)
         tail = check_tail(tail)
-        file_resource_name = convert_url_to_name(head)[:100] + tail
+        file_resource_name = (
+            f"{convert_url_to_name(head)[:MAX_FILE_NAME]}{tail}")
         path_abs = os.path.join(dir_for_resources_path, file_resource_name)
         with open(path_abs, 'wb') as write_file:
             write_file.write(resource)
@@ -82,11 +83,11 @@ def extract_resource(link, dir_for_resources_path, url_hostname, url):
             requests.exceptions.InvalidSchema,
             requests.exceptions.MissingSchema,
             requests.exceptions.InvalidURL):
-        logger.debug(f'Bad request {link_internal}')
+        logger.debug(f'Bad request {tag_link}')
 
 
 def modify_link(link, url_hostname, dir_path, url):
-    if link.name == 'img' or link.name == 'script':
+    if link.name in ('img', 'script'):
         atr = 'src'
     else:
         atr = 'href'
