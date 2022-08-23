@@ -31,7 +31,7 @@ def normalize_url(url, url_hostname, parent_url=None):
         if urlparse(url).path[0] != '/':
             return f"{protocol}{url_hostname}/{url}"
         return f"{protocol}{url_hostname}{url}"
-    if urlparse(url).scheme == '':
+    if urlparse(url).scheme == '' and url[:2] == '//':
         return f"{protocol[:-2]}{url}"
     return url
 
@@ -49,30 +49,33 @@ def check_tail(tail):
     if check_tail == []:
         return '.html'
     if not (check_tail == [] or check_tail == ['.']):
-        return convert_url_to_name(tail)
+        return re.sub(r"[\W|_]", '-', tail)
     return tail
 
 
-def extract_resource(link, dir_for_resources_path, url_hostname, url):
+def find_link_atr(link):
     if link.name in ('img', 'script'):
-        atr = 'src'
+        return 'src'
     else:
-        atr = 'href'
+        return 'href'
+
+
+def extract_resource(link, dir_for_resources_path, url_hostname, url):
+    tag_link = link.get(find_link_atr(link))
     _, dir_for_resources_name = os.path.split(dir_for_resources_path)
-    tag_link = link.get(atr)
     normalized_url = normalize_url(tag_link, url_hostname, url)
     try:
         r = requests.get(normalized_url)
         if r.status_code != 200:
             logger.info(f'Status code {r.status_code} {tag_link}')
-            return ''
+            return
         resource = r.content
         head, tail = os.path.splitext(normalized_url)
         tail = check_tail(tail)
         file_resource_name = (
             f"{convert_url_to_name(head)[:MAX_FILE_NAME]}{tail}")
-        path_abs = os.path.join(dir_for_resources_path, file_resource_name)
-        with open(path_abs, 'wb') as write_file:
+        absolute_path = os.path.join(dir_for_resources_path, file_resource_name)
+        with open(absolute_path, 'wb') as write_file:
             write_file.write(resource)
         relative_path = os.path.join(dir_for_resources_name, file_resource_name)
         return relative_path
@@ -87,10 +90,7 @@ def extract_resource(link, dir_for_resources_path, url_hostname, url):
 
 
 def modify_link(link, url_hostname, dir_path, url):
-    if link.name in ('img', 'script'):
-        atr = 'src'
-    else:
-        atr = 'href'
+    atr = find_link_atr(link)
     hostname = urlparse(link.get(atr)).hostname
     if hostname is None or hostname == url_hostname:
         new_link = extract_resource(link, dir_path, url_hostname, url)
