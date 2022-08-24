@@ -75,7 +75,7 @@ def test_download_img(caplog):
 
 
 @pook.on
-def test_download_res(caplog):
+def test_download_hexlet_io(caplog):
     logger.debug('test')
     caplog.set_level(logging.DEBUG)
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
@@ -92,7 +92,10 @@ def test_download_res(caplog):
     with open(html_path) as result_file:
         with open(get_fixture_path('link_scr_after.html')) as expected_file:
             assert result_file.read() == expected_file.read()
+    assert len(os.listdir(dir_path)) == 2
     expected_dir_name = 'ru-hexlet-io-courses_files'
+    assert len(os.listdir(
+        os.path.join(dir_path, expected_dir_name))) == 4
     expected_dir_path = os.path.join(dir_path, expected_dir_name)
     expected_file1_path = os.path.join(
         expected_dir_path, 'ru-hexlet-io-assets-application.css')
@@ -107,7 +110,7 @@ def test_download_res(caplog):
 
 
 @pook.on
-def test_download_res2(caplog):
+def test_download_site(caplog):
     logger.debug('test')
     caplog.set_level(logging.DEBUG)
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
@@ -122,12 +125,27 @@ def test_download_res2(caplog):
     pook.get('https://site.com/assets/scripts.js', reply=200)
     resources.download(url, dir_path, html_path)
     assert len(os.listdir(dir_path)) == 2
+    expected_dir_name = 'site-com-blog-about_files'
     assert len(os.listdir(
-        os.path.join(dir_path, 'site-com-blog-about_files'))) == 4
+        os.path.join(dir_path, expected_dir_name))) == 4
+    expected_dir_path = os.path.join(dir_path, expected_dir_name)
+    expected_file1_path = os.path.join(
+        expected_dir_path, 'site-com-blog-about.html')
+    expected_file2_path = os.path.join(
+        expected_dir_path, 'site-com-blog-about-assets-styles.css')
+    expected_file3_path = os.path.join(
+        expected_dir_path, 'site-com-photos-me.jpg')
+    expected_file4_path = os.path.join(
+        expected_dir_path, 'site-com-assets-scripts.js')
+    assert os.path.exists(expected_dir_path)
+    assert os.path.exists(expected_file1_path)
+    assert os.path.exists(expected_file2_path)
+    assert os.path.exists(expected_file3_path)
+    assert os.path.exists(expected_file4_path)
 
 
 @pook.on
-def test_download_res3(caplog):
+def test_download_localhost(caplog):
     logger.debug('test')
     caplog.set_level(logging.DEBUG)
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
@@ -142,8 +160,23 @@ def test_download_res3(caplog):
     pook.get('http://localhost/assets/scripts.js', reply=200)
     resources.download(url, dir_path, html_path)
     assert len(os.listdir(dir_path)) == 2
+    expected_dir_name = 'localhost-blog-about_files'
     assert len(os.listdir(
-        os.path.join(dir_path, 'localhost-blog-about_files'))) == 4
+        os.path.join(dir_path, expected_dir_name))) == 4
+    expected_dir_path = os.path.join(dir_path, expected_dir_name)
+    expected_file1_path = os.path.join(
+        expected_dir_path, 'localhost-blog-about.html')
+    expected_file2_path = os.path.join(
+        expected_dir_path, 'localhost-blog-about-assets-styles.css')
+    expected_file3_path = os.path.join(
+        expected_dir_path, 'localhost-photos-me.jpg')
+    expected_file4_path = os.path.join(
+        expected_dir_path, 'localhost-assets-scripts.js')
+    assert os.path.exists(expected_dir_path)
+    assert os.path.exists(expected_file1_path)
+    assert os.path.exists(expected_file2_path)
+    assert os.path.exists(expected_file3_path)
+    assert os.path.exists(expected_file4_path)
 
 
 @pook.on
@@ -153,9 +186,9 @@ def test_no_dir():
     fake_dir = 'fake_dir'
     dir_path = os.path.join(os.getcwd(), temp_dir.name, fake_dir)
     pook.get(url, reply=200)
-    with pytest.raises(FileNotFoundError) as e:
+    with pytest.raises(FileNotFoundError) as error:
         download(url, output=dir_path)
-    assert e is not None
+    assert error is not None
 
 
 @pook.on
@@ -164,6 +197,6 @@ def test_invalid_url():
     url = 'https://ru.hexlet.ix'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
     pook.get(url, reply=404)
-    with pytest.raises(requests.ConnectionError) as e:
+    with pytest.raises(requests.ConnectionError) as error:
         download(url, output=dir_path)
-    assert e is not None
+    assert error is not None

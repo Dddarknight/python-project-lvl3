@@ -1,4 +1,4 @@
-make lint: #запуск flake8
+lint:
 	poetry run flake8 page_loader
 
 install:
