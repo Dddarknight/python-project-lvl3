@@ -25,11 +25,13 @@ Page_loader is a CLI utility.
 The html page is downloaded to the html file, path to which has to be provided by the user. Otherwise the file is created in the current directory.
 Resources from this page, which are availible via links (tags 'img', 'script', 'link'), are downloaded in a separate directory. The path of this directory is similar to the html file path.
 
-## Installation
+## Installation for contributors
 ```
 $ git clone git@github.com:Dddarknight/python-project-lvl3.git
 $ cd python-project-lvl3
-$ python3 -m pip install dist/hexlet_code-0.1.0-py3-none-any.whl
+$ pip install poetry
+$ make install
+$ make build
 ```
 
 ## Usage

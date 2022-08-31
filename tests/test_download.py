@@ -2,20 +2,11 @@ import tempfile
 import os
 import requests_mock
 import shutil
-import logging
 import pytest
-import pook
+from unittest import mock
 import requests
 from page_loader.html_page import download
 import page_loader.resources as resources
-
-
-logging.basicConfig(filename='page_loader.log',
-                    level=logging.DEBUG,
-                    filemode='w',
-                    format='%(asctime)s %(message)s',
-                    datefmt='%m/%d/%Y %I:%M:%S %p')
-logger = logging.getLogger()
 
 
 def func_fake(url):
@@ -23,9 +14,7 @@ def func_fake(url):
     return r
 
 
-def test_download_fake_request(caplog):
-    logger.debug('test')
-    caplog.set_level(logging.DEBUG)
+def test_download_fake_request():
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
     file_path = download(url, temp_dir.name, get_request_result=func_fake)
@@ -34,9 +23,7 @@ def test_download_fake_request(caplog):
         assert actual.strip() == 'output_text'
 
 
-def test_download_mock(caplog):
-    logger.debug('test')
-    caplog.set_level(logging.DEBUG)
+def test_download_mock():
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
     with requests_mock.Mocker() as mock:
@@ -50,22 +37,22 @@ def get_fixture_path(name):
     return os.path.join('tests/fixtures', name)
 
 
-@pook.on
-def test_download_img(caplog):
-    logger.debug('test')
-    caplog.set_level(logging.DEBUG)
+def compare(html_path, fixture_name):
+    with open(html_path) as result_file:
+        with open(get_fixture_path(fixture_name)) as expected_file:
+            assert result_file.read() == expected_file.read()
+
+
+def test_download_img(requests_mock):
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
     file_name = 'img_download_before.html'
     shutil.copy(get_fixture_path(file_name), dir_path)
     html_path = os.path.join(dir_path, file_name)
-    pook.get('https://ru.hexlet.io/assets/professions/nodejs.png', reply=200)
+    requests_mock.get('https://ru.hexlet.io/assets/professions/nodejs.png')
     resources.download(url, dir_path, html_path)
-    with open(html_path) as result_file:
-        with open(
-                get_fixture_path('img_download_after.html')) as expected_file:
-            assert result_file.read() == expected_file.read()
+    compare(html_path, 'img_download_after.html')
     expected_dir_name = 'ru-hexlet-io-courses_files'
     expected_dir_path = os.path.join(dir_path, expected_dir_name)
     expected_file_path = os.path.join(
@@ -74,24 +61,19 @@ def test_download_img(caplog):
     assert os.path.exists(expected_file_path)
 
 
-@pook.on
-def test_download_hexlet_io(caplog):
-    logger.debug('test')
-    caplog.set_level(logging.DEBUG)
+def test_download_hexlet_io(requests_mock):
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
     file_name = 'link_scr_before.html'
     shutil.copy(get_fixture_path(file_name), dir_path)
     html_path = os.path.join(dir_path, file_name)
-    pook.get('https://ru.hexlet.io/assets/professions/nodejs.png', reply=200)
-    pook.get('https://ru.hexlet.io/assets/application.css', reply=200)
-    pook.get('https://ru.hexlet.io/courses', reply=200)
-    pook.get('https://ru.hexlet.io/packs/js/runtime.js', reply=200)
+    requests_mock.get('https://ru.hexlet.io/assets/professions/nodejs.png')
+    requests_mock.get('https://ru.hexlet.io/assets/application.css')
+    requests_mock.get('https://ru.hexlet.io/courses')
+    requests_mock.get('https://ru.hexlet.io/packs/js/runtime.js')
     resources.download(url, dir_path, html_path)
-    with open(html_path) as result_file:
-        with open(get_fixture_path('link_scr_after.html')) as expected_file:
-            assert result_file.read() == expected_file.read()
+    compare(html_path, 'link_scr_after.html')
     assert len(os.listdir(dir_path)) == 2
     expected_dir_name = 'ru-hexlet-io-courses_files'
     assert len(os.listdir(
@@ -109,20 +91,17 @@ def test_download_hexlet_io(caplog):
     assert os.path.exists(expected_file3_path)
 
 
-@pook.on
-def test_download_site(caplog):
-    logger.debug('test')
-    caplog.set_level(logging.DEBUG)
+def test_download_site(requests_mock):
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://site.com/blog/about'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
     file_name = 'site-com-blog-about.html'
     shutil.copy(get_fixture_path(file_name), dir_path)
     html_path = os.path.join(dir_path, file_name)
-    pook.get('https://site.com/blog/about', reply=200)
-    pook.get('https://site.com/blog/about/assets/styles.css', reply=200)
-    pook.get('https://site.com/photos/me.jpg', reply=200)
-    pook.get('https://site.com/assets/scripts.js', reply=200)
+    requests_mock.get('https://site.com/blog/about')
+    requests_mock.get('https://site.com/blog/about/assets/styles.css')
+    requests_mock.get('https://site.com/photos/me.jpg')
+    requests_mock.get('https://site.com/assets/scripts.js')
     resources.download(url, dir_path, html_path)
     assert len(os.listdir(dir_path)) == 2
     expected_dir_name = 'site-com-blog-about_files'
@@ -144,20 +123,17 @@ def test_download_site(caplog):
     assert os.path.exists(expected_file4_path)
 
 
-@pook.on
-def test_download_localhost(caplog):
-    logger.debug('test')
-    caplog.set_level(logging.DEBUG)
+def test_download_localhost(requests_mock):
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'http://localhost/blog/about'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
     file_name = 'localhost-blog-about.html'
     shutil.copy(get_fixture_path(file_name), dir_path)
     html_path = os.path.join(dir_path, file_name)
-    pook.get('http://localhost/blog/about', reply=200)
-    pook.get('http://localhost/blog/about/assets/styles.css', reply=200)
-    pook.get('http://localhost/photos/me.jpg', reply=200)
-    pook.get('http://localhost/assets/scripts.js', reply=200)
+    requests_mock.get('http://localhost/blog/about')
+    requests_mock.get('http://localhost/blog/about/assets/styles.css')
+    requests_mock.get('http://localhost/photos/me.jpg')
+    requests_mock.get('http://localhost/assets/scripts.js')
     resources.download(url, dir_path, html_path)
     assert len(os.listdir(dir_path)) == 2
     expected_dir_name = 'localhost-blog-about_files'
@@ -179,24 +155,36 @@ def test_download_localhost(caplog):
     assert os.path.exists(expected_file4_path)
 
 
-@pook.on
-def test_no_dir():
+def test_no_dir(requests_mock):
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     url = 'https://ru.hexlet.io/courses'
     fake_dir = 'fake_dir'
     dir_path = os.path.join(os.getcwd(), temp_dir.name, fake_dir)
-    pook.get(url, reply=200)
+    requests_mock.get(url)
     with pytest.raises(FileNotFoundError) as error:
         download(url, output=dir_path)
     assert error is not None
 
 
-@pook.on
-def test_invalid_url():
+@mock.patch('os.access')
+def test_no_access(mock):
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
-    url = 'https://ru.hexlet.ix'
+    url = 'https://ru.hexlet.io/courses'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
-    pook.get(url, reply=404)
-    with pytest.raises(requests.ConnectionError) as error:
+    mock.return_value = False
+    with pytest.raises(PermissionError) as error:
+        download(url, output=dir_path)
+    assert error is not None
+
+
+@pytest.mark.parametrize(
+    'status_code',
+    [400, 401, 402, 403, 404, 407, 408, 409, 500, 501, 502, 503, 504])
+def test_http_errors(requests_mock, status_code):
+    temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
+    url = 'https://ru.hexlet.io'
+    dir_path = os.path.join(os.getcwd(), temp_dir.name)
+    requests_mock.get(url, status_code=status_code)
+    with pytest.raises(requests.HTTPError) as error:
         download(url, output=dir_path)
     assert error is not None

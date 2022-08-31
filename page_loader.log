@@ -1,0 +1,142 @@
+08/31/2022 09:21:00 AM requested url: https://ru.wikipedia.org/wiki/Python
+requested url: https://ru.wikipedia.org/wiki/Python
+08/31/2022 09:21:00 AM output path: /Users/uliaegorycheva/projects
+output path: /Users/uliaegorycheva/projects
+08/31/2022 09:21:00 AM write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+08/31/2022 09:21:00 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:21:00 AM https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+08/31/2022 09:23:51 AM requested url: https://ru.wikipedia.org/wiki/Python
+requested url: https://ru.wikipedia.org/wiki/Python
+08/31/2022 09:23:51 AM output path: /Users/uliaegorycheva/projects
+output path: /Users/uliaegorycheva/projects
+08/31/2022 09:23:51 AM write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+08/31/2022 09:23:51 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:23:51 AM https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+08/31/2022 09:26:43 AM requested url: https://ru.wikipedia.org/wiki/Python
+requested url: https://ru.wikipedia.org/wiki/Python
+08/31/2022 09:26:43 AM output path: /Users/uliaegorycheva/projects
+output path: /Users/uliaegorycheva/projects
+08/31/2022 09:26:43 AM write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+08/31/2022 09:26:43 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:26:44 AM https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+08/31/2022 09:28:16 AM requested url: https://ru.wikipedia.org/wiki/Python
+requested url: https://ru.wikipedia.org/wiki/Python
+08/31/2022 09:28:16 AM output path: /Users/uliaegorycheva/projects
+output path: /Users/uliaegorycheva/projects
+08/31/2022 09:28:16 AM write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+08/31/2022 09:28:16 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:28:16 AM https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+08/31/2022 09:29:07 AM requested url: https://ru.wikipedia.org/wiki/Python
+requested url: https://ru.wikipedia.org/wiki/Python
+08/31/2022 09:29:07 AM output path: /Users/uliaegorycheva/projects
+output path: /Users/uliaegorycheva/projects
+08/31/2022 09:29:07 AM write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+08/31/2022 09:29:07 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:29:07 AM https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+08/31/2022 09:30:05 AM requested url: https://ru.wikipedia.org/wiki/Python
+requested url: https://ru.wikipedia.org/wiki/Python
+08/31/2022 09:30:05 AM output path: /Users/uliaegorycheva/projects
+output path: /Users/uliaegorycheva/projects
+08/31/2022 09:30:05 AM write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+08/31/2022 09:30:05 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:30:05 AM https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+08/31/2022 09:30:35 AM requested url: https://ru.wikipedia.org/wiki/Python
+requested url: https://ru.wikipedia.org/wiki/Python
+08/31/2022 09:30:35 AM output path: /Users/uliaegorycheva/projects
+output path: /Users/uliaegorycheva/projects
+08/31/2022 09:30:35 AM write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+08/31/2022 09:30:35 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:30:35 AM https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+08/31/2022 09:33:41 AM requested url: https://ru.wikipedia.org/wiki/Python
+requested url: https://ru.wikipedia.org/wiki/Python
+08/31/2022 09:33:41 AM output path: /Users/uliaegorycheva/projects
+output path: /Users/uliaegorycheva/projects
+08/31/2022 09:33:41 AM write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+write html file: /Users/uliaegorycheva/projects/ru-wikipedia-org-wiki-Python.html
+08/31/2022 09:33:41 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:41 AM https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+08/31/2022 09:33:42 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:43 AM https://ru.wikipedia.org:443 "GET /wiki/Special:CentralAutoLogin/start?type=1x1 HTTP/1.1" 302 0
+https://ru.wikipedia.org:443 "GET /wiki/Special:CentralAutoLogin/start?type=1x1 HTTP/1.1" 302 0
+08/31/2022 09:33:43 AM Starting new HTTPS connection (1): login.wikimedia.org:443
+Starting new HTTPS connection (1): login.wikimedia.org:443
+08/31/2022 09:33:43 AM https://login.wikimedia.org:443 "GET /wiki/Special:CentralAutoLogin/checkLoggedIn?wikiid=ruwiki&proto=https&type=1x1 HTTP/1.1" 200 68
+https://login.wikimedia.org:443 "GET /wiki/Special:CentralAutoLogin/checkLoggedIn?wikiid=ruwiki&proto=https&type=1x1 HTTP/1.1" 200 68
+08/31/2022 09:33:43 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:43 AM https://ru.wikipedia.org:443 "GET /static/images/footer/wikimedia-button.png HTTP/1.1" 200 2360
+https://ru.wikipedia.org:443 "GET /static/images/footer/wikimedia-button.png HTTP/1.1" 200 2360
+08/31/2022 09:33:43 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:43 AM https://ru.wikipedia.org:443 "GET /static/images/footer/poweredby_mediawiki_88x31.png HTTP/1.1" 200 2205
+https://ru.wikipedia.org:443 "GET /static/images/footer/poweredby_mediawiki_88x31.png HTTP/1.1" 200 2205
+08/31/2022 09:33:43 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:43 AM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=ext.cite.styles%7Cext.flaggedRevs.basic%2Cicons%7Cext.pygments%2CwikimediaBadges%7Cext.uls.interlanguage%7Cext.visualEditor.desktopArticleTarget.noscript%7Cjquery.makeCollapsible.styles%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.vector.styles.legacy%7Cwikibase.client.init&only=styles&skin=vector HTTP/1.1" 200 19378
+https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=ext.cite.styles%7Cext.flaggedRevs.basic%2Cicons%7Cext.pygments%2CwikimediaBadges%7Cext.uls.interlanguage%7Cext.visualEditor.desktopArticleTarget.noscript%7Cjquery.makeCollapsible.styles%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.vector.styles.legacy%7Cwikibase.client.init&only=styles&skin=vector HTTP/1.1" 200 19378
+08/31/2022 09:33:43 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:44 AM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=site.styles&only=styles&skin=vector HTTP/1.1" 200 5110
+https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=site.styles&only=styles&skin=vector HTTP/1.1" 200 5110
+08/31/2022 09:33:44 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:44 AM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=noscript&only=styles&skin=vector HTTP/1.1" 200 38
+https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=noscript&only=styles&skin=vector HTTP/1.1" 200 38
+08/31/2022 09:33:44 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:45 AM https://ru.wikipedia.org:443 "GET /w/index.php?title=Python&action=edit HTTP/1.1" 200 None
+https://ru.wikipedia.org:443 "GET /w/index.php?title=Python&action=edit HTTP/1.1" 200 None
+08/31/2022 09:33:45 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:45 AM https://ru.wikipedia.org:443 "GET /static/apple-touch/wikipedia.png HTTP/1.1" 200 1313
+https://ru.wikipedia.org:443 "GET /static/apple-touch/wikipedia.png HTTP/1.1" 200 1313
+08/31/2022 09:33:45 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:45 AM https://ru.wikipedia.org:443 "GET /static/favicon/wikipedia.ico HTTP/1.1" 200 1035
+https://ru.wikipedia.org:443 "GET /static/favicon/wikipedia.ico HTTP/1.1" 200 1035
+08/31/2022 09:33:45 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:46 AM https://ru.wikipedia.org:443 "GET /w/opensearch_desc.php HTTP/1.1" 200 456
+https://ru.wikipedia.org:443 "GET /w/opensearch_desc.php HTTP/1.1" 200 456
+08/31/2022 09:33:46 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:46 AM https://ru.wikipedia.org:443 "GET /w/api.php?action=rsd HTTP/1.1" 200 699
+https://ru.wikipedia.org:443 "GET /w/api.php?action=rsd HTTP/1.1" 200 699
+08/31/2022 09:33:46 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:46 AM https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+https://ru.wikipedia.org:443 "GET /wiki/Python HTTP/1.1" 200 121186
+08/31/2022 09:33:46 AM Bad request mw-data:TemplateStyles:r117903712
+Bad request mw-data:TemplateStyles:r117903712
+08/31/2022 09:33:46 AM Bad request mw-data:TemplateStyles:r117908769
+Bad request mw-data:TemplateStyles:r117908769
+08/31/2022 09:33:46 AM Bad request mw-data:TemplateStyles:r117908877
+Bad request mw-data:TemplateStyles:r117908877
+08/31/2022 09:33:46 AM Starting new HTTPS connection (1): ru.wikipedia.org:443
+Starting new HTTPS connection (1): ru.wikipedia.org:443
+08/31/2022 09:33:46 AM https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=startup&only=scripts&raw=1&skin=vector HTTP/1.1" 200 19476
+https://ru.wikipedia.org:443 "GET /w/load.php?lang=ru&modules=startup&only=scripts&raw=1&skin=vector HTTP/1.1" 200 19476

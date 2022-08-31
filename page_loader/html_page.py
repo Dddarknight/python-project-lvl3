@@ -9,26 +9,30 @@ logger = logging.getLogger()
 
 
 def get_request_result(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        logger.info(f'Status code {r.status_code} {url}')
-        raise requests.ConnectionError
-    return r.text
+    response = requests.get(url)
+    response.raise_for_status()
+    return response.text
+
+
+def check_output(output_path):
+    if not os.path.exists(output_path):
+        logger.info('Please, print the appropriate directory')
+        raise FileNotFoundError
+    if not os.access(output_path, os.W_OK):
+        logger.info('Access denied')
+        raise PermissionError
 
 
 def download(url, output=os.getcwd(), get_request_result=get_request_result):
-    output = os.path.abspath(output)
-    if not os.path.exists(output):
-        logger.info('Please, print the appropriate directory')
-        raise FileNotFoundError
+    logger.info(f'requested url: {url}')
     file_name = f"{convert_url_to_name(url)}.html"
-    r = get_request_result(url)
-    html_path = os.path.join(output, file_name)
-    with open(html_path, 'w') as write_file:
-        logger.info(f'requested url: {url}')
-        logger.info(f'output path: {output}')
-        logger.info(f'write html file: {html_path}')
-        write_file.write(r)
+    output_path = os.path.abspath(output)
+    check_output(output_path)
+    logger.info(f'output path: {output_path}')
+    html_path = os.path.join(output_path, file_name)
+    logger.info(f'write html file: {html_path}')
+    html = get_request_result(url)
+    with open(html_path, 'w') as html_file:
+       html_file.write(html)
     resources.download(url, output, html_path)
-    logger.info(f'Page was downloaded as: {html_path}')
     return html_path
