@@ -1,4 +1,3 @@
-import os
 import requests
 import logging
 from progress.bar import ChargingBar

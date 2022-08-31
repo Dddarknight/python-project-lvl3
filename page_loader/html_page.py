@@ -33,6 +33,6 @@ def download(url, output=os.getcwd(), get_request_result=get_request_result):
     logger.info(f'write html file: {html_path}')
     html = get_request_result(url)
     with open(html_path, 'w') as html_file:
-       html_file.write(html)
+        html_file.write(html)
     resources.download(url, output, html_path)
     return html_path
