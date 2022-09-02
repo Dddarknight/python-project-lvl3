@@ -9,12 +9,7 @@ import sys
 def main():
     logger = setup_logging()
     args = parse()
-    try:
-        html_path = download(args.url, output=args.output)
-    except Exception as e:
-        logger.info(f'An error occured during the execution of a program: {e}')
-        logger.debug(f'An error occured during the execution of a program: {e}')
-        sys.exit(0)
+    html_path = download(args.url, output=args.output)
     print(f'Page was downloaded as: {html_path}')
 
 
