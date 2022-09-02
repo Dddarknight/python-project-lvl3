@@ -12,11 +12,9 @@ def main():
     args = parse()
     try:
         html_path = download(args.url, output=args.output)
-    except requests.exceptions.ConnectionError as connection_error:
-        logger.error(f'An error occured during the execution of a program: {connection_error}')
-        sys.exit(0)
     except Exception as e:
-        logger.error(f'An error occured during the execution of a program: {e}')
+        logger.error(
+            f'An error occured during the execution of a program: {e}')
         sys.exit(1)
     print(f'Page was downloaded as: {html_path}')
 

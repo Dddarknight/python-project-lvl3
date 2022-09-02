@@ -14,8 +14,12 @@ def prepair_resources(url,
 
     tags = get_tags(soup)
     url_hostname = urlparse(url).hostname
-    map_urls_to_paths = modify_tags(
-        tags, url_hostname, dir_for_resources_path, dir_for_resources_name)
+    url_scheme = urlparse(url).scheme
+    map_urls_to_paths = modify_tags(tags,
+                                    url_hostname,
+                                    url_scheme,
+                                    dir_for_resources_path,
+                                    dir_for_resources_name)
     return map_urls_to_paths
 
 
@@ -28,13 +32,17 @@ def get_tags(soup):
 
 def modify_tags(tags,
                 url_hostname,
+                url_scheme,
                 dir_for_resources_path,
                 dir_for_resources_name):
 
     resources = {}
     for tag in tags:
-        resource = modify_tag(
-            tag, url_hostname, dir_for_resources_path, dir_for_resources_name)
+        resource = modify_tag(tag,
+                              url_hostname,
+                              url_scheme,
+                              dir_for_resources_path,
+                              dir_for_resources_name)
         if resource:
             resources.update(resource)
     return resources
@@ -42,6 +50,7 @@ def modify_tags(tags,
 
 def modify_tag(tag,
                url_hostname,
+               url_scheme,
                dir_for_resources_path,
                dir_for_resources_name):
 
@@ -54,7 +63,7 @@ def modify_tag(tag,
     if hostname and hostname != url_hostname:
         return None
 
-    base_url = f'https://{url_hostname}/'
+    base_url = f'{url_scheme}://{url_hostname}/'
     normalized_url = urljoin(base_url, urlparse(tag_link).path)
 
     file_resource_name = make_file_resource_name(normalized_url)
