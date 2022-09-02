@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-from urllib.error import HTTPError
 from page_loader.html_page import download
 from page_loader.cli import parse
 from page_loader.logger import setup_logging
 import sys
+import requests
 
 
 def main():
@@ -12,6 +12,9 @@ def main():
     args = parse()
     try:
         html_path = download(args.url, output=args.output)
+    except requests.exceptions.ConnectionError as connection_error:
+        logger.error(f'An error occured during the execution of a program: {connection_error}')
+        sys.exit(0)
     except Exception as e:
         logger.error(f'An error occured during the execution of a program: {e}')
         sys.exit(1)
