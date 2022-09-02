@@ -13,7 +13,7 @@ def main():
         html_path = download(args.url, output=args.output)
     except Exception as e:
         logger.info(f'An error occured during the execution of a program: {e}')
-        sys.exit(1)
+        sys.exit(0)
     print(f'Page was downloaded as: {html_path}')
 
 
