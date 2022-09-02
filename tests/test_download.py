@@ -46,9 +46,9 @@ def test_download_img():
 
     with open(get_fixture_path('img_download_before.html')) as html_file:
         html = html_file.read()
-    
+
     url = 'https://ru.hexlet.io/courses'
-    
+
     with requests_mock.Mocker() as m:
         m.get(requests_mock.ANY, text=html)
         html_path = download(url, output_path)
@@ -69,14 +69,14 @@ def test_download_hexlet_io():
 
     with open(get_fixture_path('link_scr_before.html')) as html_file:
         html = html_file.read()
-    
+
     url = 'https://ru.hexlet.io/courses'
     with requests_mock.Mocker() as m:
         m.get(requests_mock.ANY, text=html)
         html_path = download(url, output_path)
 
     compare(html_path, 'link_scr_after.html')
-    
+
     assert len(os.listdir(output_path)) == 2
     expected_dir_name = 'ru-hexlet-io-courses_files'
     assert len(os.listdir(
