@@ -280,14 +280,6 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
-name = "unittest"
-version = "0.0"
-description = ""
-category = "dev"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "urllib3"
 version = "1.26.12"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -303,7 +295,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4"
-content-hash = "a447f822824518d18a2c61cf5b39c49e43bfb97e0a72b425351e59e0450b250d"
+content-hash = "78a6757c8aee277b9d0e9fe802d5c16a60dc13363fdc712211ad9b2b03e0af7e"
 
 [metadata.files]
 atomicwrites = []
@@ -391,5 +383,4 @@ tomli = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
     {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
 ]
-unittest = []
 urllib3 = []

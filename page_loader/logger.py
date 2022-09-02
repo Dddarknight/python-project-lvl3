@@ -5,7 +5,7 @@ import sys
 LOG_FILE_NAME = 'page_loader.log'
 
 
-def configurate_logging():
+def setup_logging():
     logging.basicConfig(filename=LOG_FILE_NAME,
                         level=logging.DEBUG,
                         format='%(asctime)s %(message)s',
@@ -17,3 +17,4 @@ def configurate_logging():
     file_handler = logging.FileHandler(filename='page_loader.log')
     file_handler.setLevel(logging.DEBUG)
     logger.addHandler(file_handler)
+    return logger
