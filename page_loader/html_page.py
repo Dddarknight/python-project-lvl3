@@ -36,7 +36,7 @@ def download(url, output=os.getcwd(), get_html=get_html):
 
     html = get_html(url)
     soup = BeautifulSoup(html, 'html.parser')
-    
+
     dir_for_resources_name = f"{convert_url_to_name(url)}_files"
     dir_for_resources_path = create_dir(
         os.path.join(output_path, dir_for_resources_name))
