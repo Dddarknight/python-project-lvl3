@@ -10,3 +10,17 @@ Starting new HTTPS connection (1): losst.ru:443
 https://losst.ru:443 "GET /komanda-chmod-linux HTTP/1.1" 200 36029
 09/02/2022 01:55:46 PM An error occured during the execution of a program: [Errno 13] Permission denied: '/Users/uliaegorycheva/projects/testdir/losst-ru-komanda-chmod-linux_files'
 An error occured during the execution of a program: [Errno 13] Permission denied: '/Users/uliaegorycheva/projects/testdir/losst-ru-komanda-chmod-linux_files'
+09/02/2022 01:59:48 PM requested url: https://losst.ru/komanda-chmod-linux
+requested url: https://losst.ru/komanda-chmod-linux
+09/02/2022 01:59:48 PM output path: /Users/uliaegorycheva/projects/testdir
+output path: /Users/uliaegorycheva/projects/testdir
+09/02/2022 01:59:48 PM write html file: /Users/uliaegorycheva/projects/testdir/losst-ru-komanda-chmod-linux.html
+write html file: /Users/uliaegorycheva/projects/testdir/losst-ru-komanda-chmod-linux.html
+09/02/2022 01:59:48 PM Starting new HTTPS connection (1): losst.ru:443
+Starting new HTTPS connection (1): losst.ru:443
+09/02/2022 01:59:48 PM https://losst.ru:443 "GET /komanda-chmod-linux HTTP/1.1" 200 36029
+https://losst.ru:443 "GET /komanda-chmod-linux HTTP/1.1" 200 36029
+09/02/2022 01:59:48 PM An error occured during the execution of a program: [Errno 13] Permission denied: '/Users/uliaegorycheva/projects/testdir/losst-ru-komanda-chmod-linux_files'
+An error occured during the execution of a program: [Errno 13] Permission denied: '/Users/uliaegorycheva/projects/testdir/losst-ru-komanda-chmod-linux_files'
+09/02/2022 01:59:48 PM An error occured during the execution of a program: [Errno 13] Permission denied: '/Users/uliaegorycheva/projects/testdir/losst-ru-komanda-chmod-linux_files'
+An error occured during the execution of a program: [Errno 13] Permission denied: '/Users/uliaegorycheva/projects/testdir/losst-ru-komanda-chmod-linux_files'
