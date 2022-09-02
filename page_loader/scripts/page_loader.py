@@ -4,7 +4,6 @@ from page_loader.html_page import download
 from page_loader.cli import parse
 from page_loader.logger import setup_logging
 import sys
-import requests
 
 
 def main():
