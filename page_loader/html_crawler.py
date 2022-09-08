@@ -15,7 +15,7 @@ def prepare_resources(url,
                               url,
                               dir_for_resources_path,
                               dir_for_resources_name)
-    return resources, soup
+    return resources, soup.prettify()
 
 
 def get_tags(soup):

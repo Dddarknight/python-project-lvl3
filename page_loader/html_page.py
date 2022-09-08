@@ -20,7 +20,6 @@ def create_dir(dir_path):
         os.mkdir(dir_path)
     logger.info(
         f'A directory for resources was created: {dir_path}')
-    return dir_path
 
 
 def download(url, output=os.getcwd(), get_html=get_html):
@@ -35,18 +34,19 @@ def download(url, output=os.getcwd(), get_html=get_html):
     html_path = os.path.join(output_path, file_name)
     logger.info(f'write html file: {html_path}')
 
+    dir_for_resources_path = os.path.join(output_path, dir_for_resources_name)
+
     html = get_html(url)
 
-    dir_for_resources_path = create_dir(
-        os.path.join(output_path, dir_for_resources_name))
+    create_dir(dir_for_resources_path)
 
-    resources, soup = prepare_resources(url,
-                                        dir_for_resources_path,
-                                        dir_for_resources_name,
-                                        html)
+    resources, modified_html = prepare_resources(url,
+                                                 dir_for_resources_path,
+                                                 dir_for_resources_name,
+                                                 html)
     resources_download(resources)
 
     with open(html_path, 'w') as html_file:
-        html_file.write(soup.prettify())
+        html_file.write(modified_html)
 
     return html_path

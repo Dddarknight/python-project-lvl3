@@ -30,44 +30,11 @@ def test_download_fake_request():
         assert actual.strip() == 'output_text'
 
 
-def test_download_mock():
-    temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
-    url = 'https://ru.hexlet.io/courses'
-    with requests_mock.Mocker() as mock:
-        mock.get(url, text='output_text')
-        download(url, temp_dir.name)
-        assert mock.call_count == 1
-        assert mock.request_history[0].url == url
-
-
-def test_download_img():
+def test_download_with_url_and_https():
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     output_path = os.path.join(os.getcwd(), temp_dir.name)
 
-    with open(get_fixture_path('img_download_before.html')) as html_file:
-        html = html_file.read()
-
-    url = 'https://ru.hexlet.io/courses'
-
-    with requests_mock.Mocker() as m:
-        m.get(requests_mock.ANY, text=html)
-        html_path = download(url, output_path)
-
-    compare(html_path, 'img_download_after.html')
-
-    expected_dir_name = 'ru-hexlet-io-courses_files'
-    expected_dir_path = os.path.join(output_path, expected_dir_name)
-    expected_file_path = os.path.join(
-        expected_dir_path, 'ru-hexlet-io-assets-professions-nodejs.png')
-    assert os.path.exists(expected_dir_path)
-    assert os.path.exists(expected_file_path)
-
-
-def test_download_hexlet_io():
-    temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
-    output_path = os.path.join(os.getcwd(), temp_dir.name)
-
-    with open(get_fixture_path('link_scr_before.html')) as html_file:
+    with open(get_fixture_path('link_src_before.html')) as html_file:
         html = html_file.read()
 
     url = 'https://ru.hexlet.io/courses'
@@ -75,7 +42,7 @@ def test_download_hexlet_io():
         m.get(requests_mock.ANY, text=html)
         html_path = download(url, output_path)
 
-    compare(html_path, 'link_scr_after.html')
+    compare(html_path, 'link_src_after.html')
 
     assert len(os.listdir(output_path)) == 2
     expected_dir_name = 'ru-hexlet-io-courses_files'
@@ -95,42 +62,7 @@ def test_download_hexlet_io():
     assert os.path.exists(expected_file3_path)
 
 
-def test_download_site():
-    temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
-    output_path = os.path.join(os.getcwd(), temp_dir.name)
-
-    with open(get_fixture_path('site-com-blog-about.html')) as html_file:
-        html = html_file.read()
-
-    url = 'https://site.com/blog/about'
-    with requests_mock.Mocker() as m:
-        m.get(requests_mock.ANY, text=html)
-        html_path = download(url, output_path)
-
-    compare(html_path, 'expected/site-com-blog-about.html')
-
-    assert len(os.listdir(output_path)) == 2
-    expected_dir_name = 'site-com-blog-about_files'
-    assert len(os.listdir(
-        os.path.join(output_path, expected_dir_name))) == 4
-
-    expected_dir_path = os.path.join(output_path, expected_dir_name)
-    expected_file1_path = os.path.join(
-        expected_dir_path, 'site-com-blog-about.html')
-    expected_file2_path = os.path.join(
-        expected_dir_path, 'site-com-blog-about-assets-styles.css')
-    expected_file3_path = os.path.join(
-        expected_dir_path, 'site-com-photos-me.jpg')
-    expected_file4_path = os.path.join(
-        expected_dir_path, 'site-com-assets-scripts.js')
-    assert os.path.exists(expected_dir_path)
-    assert os.path.exists(expected_file1_path)
-    assert os.path.exists(expected_file2_path)
-    assert os.path.exists(expected_file3_path)
-    assert os.path.exists(expected_file4_path)
-
-
-def test_download_localhost():
+def test_download_with_localhost_and_http():
     temp_dir = tempfile.TemporaryDirectory(dir=os.getcwd())
     output_path = os.path.join(os.getcwd(), temp_dir.name)
 
