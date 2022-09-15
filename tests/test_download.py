@@ -115,7 +115,6 @@ def test_no_access():
     os.chmod(dir_path, 444)
     with pytest.raises(PermissionError) as error:
         download(url, output=dir_path)
-    assert error is not None
 
 
 @pytest.mark.parametrize(
@@ -128,4 +127,3 @@ def test_http_errors(requests_mock, status_code):
     requests_mock.get(url, status_code=status_code)
     with pytest.raises(requests.HTTPError) as error:
         download(url, output=dir_path)
-    assert error is not None
