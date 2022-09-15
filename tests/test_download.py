@@ -113,7 +113,7 @@ def test_no_access():
     url = 'https://ru.hexlet.io/courses'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
     os.chmod(dir_path, 444)
-    with pytest.raises(PermissionError) as error:
+    with pytest.raises(PermissionError):
         download(url, output=dir_path)
 
 
@@ -125,5 +125,5 @@ def test_http_errors(requests_mock, status_code):
     url = 'https://ru.hexlet.io'
     dir_path = os.path.join(os.getcwd(), temp_dir.name)
     requests_mock.get(url, status_code=status_code)
-    with pytest.raises(requests.HTTPError) as error:
+    with pytest.raises(requests.HTTPError):
         download(url, output=dir_path)
